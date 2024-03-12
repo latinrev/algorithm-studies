@@ -6,4 +6,6 @@ Contents
 - Linked List
   - Stacks
   - Queue
+- Hash Tables
+    
 # Algorithms
