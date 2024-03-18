@@ -13,44 +13,55 @@ class LinkedList {
 
   addAsQueue(data) {
     const current = this.head
-    if (this.head === null) {
+    if(!current){
       const newNode = new Node(data)
       this.head = newNode
+      this.tail = newNode
       return
     }
-    const newNode = new Node(data, current)
-    current.next = newNode
+    const newNode = new Node(data)
+    this.tail.next = newNode
     this.tail = newNode
   }
 
-  addAsStack() {
-    const current = this.head  || null
+  addAsStack(data) {
+    const current = this.head || null
     const newNode = new Node(data)
     this.head = newNode
     newNode.next = current
   }
-  pop() {
+
+  popAsQueue(){
     const current = this.head
-    const data = current.data
-    this.head = current.next || null
-    return data
-  }
-  popTail() {
-    const current = this.tail
-    if (current) {
-      const data = current.data
+    if(current){
       this.head = current.next
+      return current.data
+    }
+  }
+  popAsStack() {
+    if (this.head) {
+      const current = this.head
+      const data = current.data
+      this.head = current.next || null
       return data
+    }else{
+      console.log('No more elements in the list')
     }
   }
 }
 
-const ll = new LinkedList()
+const stack = new LinkedList()
+stack.addAsStack('1')
+stack.addAsStack('2')
+stack.addAsStack('3')
+console.log(JSON.stringify(stack))
+console.log(stack.popAsStack());
+console.log(JSON.stringify(stack))
 
-ll.addAsQueue('1')
-ll.addAsQueue('2')
-ll.addAsQueue('3')
-ll.addAsQueue('4')
-while(ll.head != null){
-  console.log(ll.pop())
-}
+const queue = new LinkedList()
+queue.addAsQueue('1')
+queue.addAsQueue('2')
+queue.addAsQueue('3')
+console.log(JSON.stringify(queue))
+console.log(queue.popAsQueue());
+console.log(JSON.stringify(queue))
